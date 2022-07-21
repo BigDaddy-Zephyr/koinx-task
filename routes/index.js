@@ -88,7 +88,7 @@ router.get('/transactions',async(req,res)=>{
 })
 
 //Task 2
-cron.schedule('* * * * *', async() => {
+cron.schedule('*/10 * * * *', async() => {
   let price = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=inr')
   const priceUpdate = new Price({name:"Ethereum", price:price.data.ethereum.inr})
   priceUpdate.save().then(() => console.log("Entry added"))
